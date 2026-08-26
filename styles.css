@@ -312,3 +312,1035 @@ a{text-decoration:none;color:inherit}
   .lightbox img{max-width:94vw;max-height:75vh}
   .lightbox-prev{left:10px}.lightbox-next{right:10px}
 }
+/* =========================================================
+   ATU SUSHI — RESPONSIVE FIX
+   Mobile first
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Evita que imágenes/videos generen overflow */
+img,
+video,
+svg,
+iframe {
+  max-width: 100%;
+}
+
+img {
+  display: block;
+}
+
+/* =========================================================
+   CONTENEDOR
+   ========================================================= */
+
+.container,
+.max-w-7xl {
+  width: min(100% - 32px, 1280px);
+  margin-inline: auto;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header,
+[data-header] {
+  width: 100%;
+  max-width: 100%;
+}
+
+header > div,
+[data-header] > div {
+  min-height: 68px;
+  padding-inline: 16px;
+}
+
+/* =========================================================
+   NAV DESKTOP / MOBILE
+   ========================================================= */
+
+nav {
+  display: none;
+}
+
+[data-menu-toggle] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  border: 1px solid rgba(255,255,255,.25);
+  background: transparent;
+  color: inherit;
+
+  cursor: pointer;
+}
+
+[data-menu-toggle] span,
+[data-menu-toggle]::before,
+[data-menu-toggle]::after {
+  content: "";
+}
+
+/* =========================================================
+   MENU MOBILE FULLSCREEN
+   ========================================================= */
+
+[data-mobile-menu] {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+
+  width: 100vw;
+  height: 100dvh;
+
+  padding:
+    calc(82px + env(safe-area-inset-top))
+    24px
+    calc(40px + env(safe-area-inset-bottom));
+
+  background: #141212;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(-20px);
+
+  transition:
+    opacity .35s ease,
+    transform .35s ease,
+    visibility .35s ease;
+}
+
+[data-mobile-menu].is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+[data-mobile-menu] a {
+  display: block;
+
+  width: 100%;
+
+  padding: 12px 0;
+
+  color: #f5f0e6;
+  text-decoration: none;
+
+  font-size: clamp(2rem, 10vw, 4rem);
+  line-height: .95;
+  letter-spacing: -.04em;
+
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+[data-mobile-menu] a:hover {
+  color: #d62828;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+#inicio {
+  position: relative;
+
+  min-height: 100svh;
+  min-height: 100dvh;
+
+  width: 100%;
+
+  display: flex;
+  align-items: flex-end;
+
+  padding-top: 80px;
+  padding-bottom: 110px;
+
+  overflow: hidden;
+}
+
+#inicio > div {
+  max-width: 100%;
+}
+
+#inicio h1 {
+  width: 100%;
+  max-width: 900px;
+
+  font-size: clamp(
+    3rem,
+    13vw,
+    7rem
+  );
+
+  line-height: .92;
+
+  overflow-wrap: break-word;
+}
+
+#inicio p {
+  max-width: 620px;
+
+  font-size: clamp(
+    1rem,
+    4vw,
+    1.25rem
+  );
+}
+
+#inicio img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.btn-primary,
+.btn-ghost,
+button {
+  min-height: 48px;
+}
+
+.btn-primary,
+.btn-ghost {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 13px 20px;
+
+  text-align: center;
+}
+
+#inicio .flex {
+  width: 100%;
+}
+
+#inicio .flex a {
+  flex: 1 1 100%;
+}
+
+/* =========================================================
+   SECCIONES
+   ========================================================= */
+
+section {
+  width: 100%;
+  max-width: 100%;
+
+  overflow: hidden;
+}
+
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* reemplaza el comportamiento de max-w-7xl */
+section.max-w-7xl,
+section.container {
+  width: min(
+    calc(100% - 32px),
+    1280px
+  );
+
+  margin-inline: auto;
+}
+
+/* =========================================================
+   GRID GENERICO
+   ========================================================= */
+
+.grid {
+  display: grid;
+}
+
+#productGrid {
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.product-card {
+  width: 100%;
+  min-width: 0;
+}
+
+.roll-card {
+  width: 100%;
+  height: auto !important;
+
+  min-height: 360px;
+  max-height: 520px;
+
+  overflow: hidden;
+}
+
+.roll-card img {
+  width: 100%;
+  height: 100%;
+
+  min-height: 360px;
+
+  object-fit: cover;
+}
+
+/* =========================================================
+   MENU FILTERS
+   ========================================================= */
+
+#filterPills {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: nowrap;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  gap: 8px;
+
+  padding-bottom: 8px;
+
+  scrollbar-width: none;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+#filterPills::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-pill {
+  flex: 0 0 auto;
+
+  white-space: nowrap;
+
+  min-height: 44px;
+}
+
+/* =========================================================
+   NOSOTROS
+   ========================================================= */
+
+#nosotros {
+  display: flex;
+  flex-direction: column;
+
+  gap: 40px;
+
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+#nosotros > div {
+  width: 100%;
+}
+
+#nosotros img {
+  width: 100%;
+  height: 420px;
+
+  object-fit: cover;
+}
+
+/* =========================================================
+   TEXTOS
+   ========================================================= */
+
+h1,
+h2,
+h3,
+p {
+  max-width: 100%;
+}
+
+h2 {
+  font-size: clamp(
+    2.4rem,
+    9vw,
+    5rem
+  );
+
+  line-height: .95;
+}
+
+p {
+  overflow-wrap: break-word;
+}
+
+/* =========================================================
+   MARQUEE
+   ========================================================= */
+
+[data-marquee] {
+  width: 100%;
+  overflow: hidden;
+}
+
+[data-marquee-track] {
+  display: flex;
+  width: max-content;
+
+  white-space: nowrap;
+
+  will-change: transform;
+}
+
+/* =========================================================
+   PRECISIÓN
+   ========================================================= */
+
+.precision-grid,
+[data-precision-grid] {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 0;
+}
+
+.precision-item,
+[data-precision-item] {
+  min-height: 180px;
+
+  padding: 28px 0;
+
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+/* =========================================================
+   SIGNATURE ROLLS
+   ========================================================= */
+
+.signature-grid,
+[data-signature-grid] {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 28px;
+}
+
+.signature-item,
+[data-signature-item] {
+  width: 100%;
+}
+
+.signature-item img,
+[data-signature-item] img {
+  width: 100%;
+  height: 420px;
+
+  object-fit: cover;
+}
+
+/* =========================================================
+   CHEF
+   ========================================================= */
+
+.chef-section,
+[data-chef-section] {
+  display: flex;
+  flex-direction: column;
+
+  gap: 32px;
+}
+
+.chef-section img,
+[data-chef-section] img {
+  width: 100%;
+  height: min(100vw, 520px);
+
+  object-fit: cover;
+}
+
+/* =========================================================
+   RESERVAS
+   ========================================================= */
+
+#reservas {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+#reservas form {
+  width: 100%;
+}
+
+#reservas input,
+#reservas select,
+#reservas textarea {
+  width: 100%;
+  max-width: 100%;
+
+  min-height: 52px;
+
+  font-size: 16px;
+}
+
+#reservas .grid {
+  grid-template-columns: 1fr;
+}
+
+/* =========================================================
+   DELIVERY
+   ========================================================= */
+
+.delivery-grid,
+[data-delivery-grid] {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 12px;
+}
+
+.delivery-grid a,
+[data-delivery-grid] a {
+  min-height: 64px;
+
+  width: 100%;
+}
+
+/* =========================================================
+   RESEÑAS
+   ========================================================= */
+
+[data-reviews-slider] {
+  width: 100%;
+
+  min-height: 360px;
+
+  position: relative;
+}
+
+[data-review] {
+  width: 100%;
+}
+
+[data-review] blockquote {
+  font-size: clamp(
+    2rem,
+    9vw,
+    5rem
+  );
+
+  line-height: .95;
+}
+
+/* =========================================================
+   GALERÍA
+   ========================================================= */
+
+.gallery,
+[data-gallery] {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 10px;
+}
+
+[data-gallery-item] {
+  width: 100%;
+  height: 65vw;
+
+  min-height: 240px;
+  max-height: 480px;
+
+  overflow: hidden;
+}
+
+[data-gallery-item] img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* =========================================================
+   LIGHTBOX
+   ========================================================= */
+
+[data-lightbox] {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 200;
+
+  padding: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,.96);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: opacity .25s ease;
+}
+
+[data-lightbox].is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+[data-lightbox-image] {
+  width: 100%;
+  max-width: 1100px;
+
+  max-height: 85dvh;
+
+  object-fit: contain;
+}
+
+/* =========================================================
+   CONTACTO
+   ========================================================= */
+
+#contacto {
+  display: flex;
+  flex-direction: column;
+
+  gap: 32px;
+
+  padding-top: 72px;
+  padding-bottom: 110px;
+}
+
+#contacto > div {
+  width: 100%;
+}
+
+#contacto iframe {
+  width: 100%;
+  min-height: 360px;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+  width: 100%;
+
+  padding-bottom: 90px;
+}
+
+footer > div {
+  width: min(
+    calc(100% - 32px),
+    1280px
+  );
+
+  margin-inline: auto;
+}
+
+footer .grid {
+  grid-template-columns: 1fr;
+}
+
+/* =========================================================
+   STICKY MOBILE CTA
+   ========================================================= */
+
+[data-sticky-cta] {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 150;
+
+  width: 100%;
+
+  padding:
+    8px
+    8px
+    calc(8px + env(safe-area-inset-bottom));
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 8px;
+
+  background: rgba(20,18,18,.96);
+
+  border-top: 1px solid rgba(255,255,255,.12);
+
+  backdrop-filter: blur(12px);
+
+  transform: translateY(110%);
+
+  transition: transform .3s ease;
+}
+
+[data-sticky-cta].is-visible {
+  transform: translateY(0);
+}
+
+[data-sticky-cta] a {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 52px;
+
+  padding: 12px;
+
+  text-decoration: none;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: .08em;
+  text-transform: uppercase;
+
+  border: 1px solid rgba(255,255,255,.18);
+}
+
+[data-sticky-cta] a:last-child {
+  background: #d62828;
+  color: white;
+
+  border-color: #d62828;
+}
+
+/* =========================================================
+   TOUCH
+   ========================================================= */
+
+@media (hover: none) {
+
+  .product-card:hover img,
+  [data-gallery-item]:hover img {
+    transform: none;
+  }
+
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (min-width: 600px) {
+
+  .container,
+  .max-w-7xl {
+    width: min(
+      calc(100% - 48px),
+      1280px
+    );
+  }
+
+  #inicio .flex a {
+    flex: 0 0 auto;
+  }
+
+  #productGrid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .delivery-grid,
+  [data-delivery-grid] {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .gallery,
+  [data-gallery] {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  #nosotros img {
+    height: 500px;
+  }
+
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 1024px) {
+
+  .container,
+  .max-w-7xl {
+    width: min(
+      calc(100% - 80px),
+      1280px
+    );
+  }
+
+  header > div,
+  [data-header] > div {
+    min-height: 80px;
+
+    padding-inline: 0;
+  }
+
+  [data-menu-toggle] {
+    display: none;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  #inicio {
+    padding-bottom: 100px;
+  }
+
+  #inicio .flex a {
+    flex: 0 0 auto;
+  }
+
+  #productGrid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  #nosotros {
+    display: grid;
+
+    grid-template-columns:
+      repeat(12, minmax(0, 1fr));
+
+    gap: 48px;
+  }
+
+  #nosotros > div:first-child {
+    grid-column: span 5;
+  }
+
+  #nosotros > div:last-child {
+    grid-column: span 7;
+  }
+
+  #nosotros img {
+    height: 600px;
+  }
+
+  .precision-grid,
+  [data-precision-grid] {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .precision-item,
+  [data-precision-item] {
+    min-height: 400px;
+
+    padding: 40px;
+
+    border-bottom: 0;
+    border-right: 1px solid rgba(255,255,255,.12);
+  }
+
+  .signature-grid,
+  [data-signature-grid] {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .chef-section,
+  [data-chef-section] {
+    display: grid;
+
+    grid-template-columns:
+      repeat(12, minmax(0, 1fr));
+
+    align-items: center;
+  }
+
+  .chef-section > *:first-child,
+  [data-chef-section] > *:first-child {
+    grid-column: span 7;
+  }
+
+  .chef-section > *:last-child,
+  [data-chef-section] > *:last-child {
+    grid-column: span 5;
+  }
+
+  .gallery,
+  [data-gallery] {
+    grid-template-columns:
+      repeat(12, minmax(0, 1fr));
+  }
+
+  [data-gallery-item] {
+    height: 420px;
+  }
+
+  [data-gallery-item]:nth-child(1) {
+    grid-column: span 7;
+  }
+
+  [data-gallery-item]:nth-child(2) {
+    grid-column: span 5;
+  }
+
+  [data-gallery-item]:nth-child(3) {
+    grid-column: span 5;
+  }
+
+  [data-gallery-item]:nth-child(4) {
+    grid-column: span 7;
+  }
+
+  #contacto {
+    display: grid;
+
+    grid-template-columns:
+      repeat(12, minmax(0, 1fr));
+
+    gap: 48px;
+  }
+
+  #contacto > div:first-child {
+    grid-column: span 5;
+  }
+
+  #contacto > div:last-child {
+    grid-column: span 7;
+  }
+
+  footer .grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  [data-sticky-cta] {
+    display: none;
+  }
+
+}
+
+/* =========================================================
+   PANTALLAS MUY PEQUEÑAS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .container,
+  .max-w-7xl,
+  section.max-w-7xl,
+  section.container {
+    width: calc(100% - 24px);
+  }
+
+  #inicio {
+    padding-top: 72px;
+    padding-bottom: 100px;
+  }
+
+  #inicio h1 {
+    font-size: 2.8rem;
+  }
+
+  #inicio p {
+    font-size: .95rem;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+  }
+
+  .roll-card,
+  .roll-card img {
+    min-height: 300px;
+  }
+
+  [data-mobile-menu] {
+    padding-inline: 18px;
+  }
+
+  [data-mobile-menu] a {
+    font-size: 2.2rem;
+  }
+
+}
+
+/* =========================================================
+   SAFE AREA / IPHONE
+   ========================================================= */
+
+@supports (padding: max(0px)) {
+
+  body {
+    padding-bottom: 0;
+  }
+
+  [data-sticky-cta] {
+    padding-bottom:
+      max(
+        8px,
+        env(safe-area-inset-bottom)
+      );
+  }
+
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+  animation-duration: .01ms !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+  transition-duration: .01ms !important;
+}
