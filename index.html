@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="description" content="ATU SUSHI — Sushi y cocina japonesa en Neuquén.">
+  <title>ATU SUSHI — Japanese Kitchen · Neuquén</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="javascript" href="script.js">
+</head>
+<body>
+  <div class="progress" id="scrollProgress"></div>
+
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#inicio" aria-label="ATU SUSHI, inicio">
+      <span class="brand-mark">ATU</span>
+      <span class="brand-sub">鮨 / NEUQUÉN</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Navegación principal">
+      <a href="#menu">Menú</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#reservas">Reservas</a>
+      <a href="#delivery">Delivery</a>
+    </nav>
+
+    <a class="header-cta" data-whatsapp-link href="#" target="_blank" rel="noopener">PEDIR AHORA <span>↗</span></a>
+
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <dialog class="mobile-menu" id="mobileMenu" aria-label="Menú móvil">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-top">
+        <span class="brand-mark">ATU</span>
+        <span class="jp-large">鮨</span>
+      </div>
+      <nav>
+        <a href="#menu">MENÚ <span>01</span></a>
+        <a href="#experiencia">EXPERIENCIA <span>02</span></a>
+        <a href="#reservas">RESERVAS <span>03</span></a>
+        <a href="#delivery">DELIVERY <span>04</span></a>
+      </nav>
+      <a class="mobile-order" data-whatsapp-link href="#" target="_blank" rel="noopener">PEDIR AHORA <span>→</span></a>
+    </div>
+  </dialog>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-media" data-parallax="0.10">
+        <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?q=85&w=2200&auto=format&fit=crop" alt="Sushi variado presentado sobre una mesa oscura" fetchpriority="high">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-grid"></div>
+
+      <div class="hero-content reveal">
+        <p class="eyebrow">NEUQUÉN · JAPANESE KITCHEN</p>
+        <h1>SUSHI.<br>HECHO <em>AL MOMENTO.</em></h1>
+        <p class="hero-copy">Cada corte. Cada grano de arroz. Cada pieza.<br>Preparada con precisión.</p>
+        <div class="hero-actions">
+          <a class="button button-red" data-whatsapp-link href="#" target="_blank" rel="noopener">PEDIR AHORA <span>→</span></a>
+          <a class="button button-line" href="#menu">VER MENÚ</a>
+        </div>
+      </div>
+
+      <div class="hero-side jp-vertical" aria-hidden="true">鮨</div>
+      <div class="scroll-cue"><span></span>SCROLL TO DISCOVER</div>
+      <div class="hero-index">01 / 13</div>
+    </section>
+
+    <section class="marquee" aria-label="ATU SUSHI">
+      <div class="marquee-track">
+        <span>FRESH SUSHI</span><b>—</b><span>MADE DAILY</span><b>—</b><span>NEUQUÉN</span><b>—</b><span>ATU</span><b>—</b>
+        <span>FRESH SUSHI</span><b>—</b><span>MADE DAILY</span><b>—</b><span>NEUQUÉN</span><b>—</b><span>ATU</span><b>—</b>
+      </div>
+    </section>
+
+    <section class="manifesto section-light" id="manifiesto">
+      <div class="section-number">01</div>
+      <div class="manifesto-title reveal">
+        <p class="eyebrow dark">EL MANIFIESTO</p>
+        <h2>NO HACEMOS<br>COMIDA <span>RÁPIDA.</span></h2>
+        <h3>HACEMOS<br>SUSHI AL MOMENTO.</h3>
+      </div>
+      <div class="manifesto-copy reveal">
+        <p>Arroz, ingredientes frescos, técnica y precisión. Todo empieza antes del primer corte y termina cuando la pieza está lista para vos.</p>
+        <p class="serif">味 · 新鮮 · 料理</p>
+      </div>
+      <figure class="manifesto-image reveal">
+        <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?q=85&w=1600&auto=format&fit=crop" alt="Preparación artesanal de sushi" loading="lazy">
+        <figcaption>PREPARACIÓN / 01</figcaption>
+      </figure>
+    </section>
+
+    <section class="precision" id="precision">
+      <div class="precision-head reveal">
+        <p class="eyebrow">02 — LA PRECISIÓN</p>
+        <h2>LA DIFERENCIA<br>ESTÁ EN <em>LOS DETALLES.</em></h2>
+      </div>
+      <div class="precision-list">
+        <article class="precision-item reveal" data-precision="01">
+          <span class="precision-number">01</span>
+          <div>
+            <h3>INGREDIENTES</h3>
+            <p>Seleccionados para cada día.</p>
+          </div>
+          <span class="precision-arrow">↗</span>
+        </article>
+        <article class="precision-item reveal" data-precision="02">
+          <span class="precision-number">02</span>
+          <div>
+            <h3>TÉCNICA</h3>
+            <p>Cortes y preparación al momento.</p>
+          </div>
+          <span class="precision-arrow">↗</span>
+        </article>
+        <article class="precision-item reveal" data-precision="03">
+          <span class="precision-number">03</span>
+          <div>
+            <h3>EQUILIBRIO</h3>
+            <p>Textura, temperatura y sabor.</p>
+          </div>
+          <span class="precision-arrow">↗</span>
+        </article>
+      </div>
+      <div class="precision-image" id="precisionImage">
+        <img src="https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=85&w=1400&auto=format&fit=crop" alt="Roll de sushi en primer plano" loading="lazy">
+        <span>ATU / 03</span>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+      <div class="menu-header reveal">
+        <div>
+          <p class="eyebrow">03 — MENÚ</p>
+          <h2>ELEGÍ<br>TU <em>COMBINACIÓN.</em></h2>
+        </div>
+        <div class="filters" id="filters" role="tablist" aria-label="Filtrar menú">
+          <button class="filter active" data-filter="todos" role="tab" aria-selected="true">TODOS</button>
+          <button class="filter" data-filter="clasicos" role="tab" aria-selected="false">ROLLS</button>
+          <button class="filter" data-filter="especiales" role="tab" aria-selected="false">ESPECIALES</button>
+          <button class="filter" data-filter="entradas" role="tab" aria-selected="false">ENTRADAS</button>
+          <button class="filter" data-filter="sashimi" role="tab" aria-selected="false">SASHIMI</button>
+          <button class="filter" data-filter="bebidas" role="tab" aria-selected="false">BEBIDAS</button>
+        </div>
+      </div>
+
+      <div class="menu-layout">
+        <div class="products" id="productGrid">
+          <article class="product" data-cat="clasicos">
+            <button class="product-image" type="button" data-lightbox="Philadelphia" data-image="https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=90&w=1600&auto=format&fit=crop">
+              <img src="https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=85&w=1100&auto=format&fit=crop" alt="Roll Philadelphia" loading="lazy">
+              <span class="view">VIEW 01</span>
+            </button>
+            <div class="product-info">
+              <div><span class="product-cat">ROLL / CLÁSICO</span><h3>Philadelphia</h3><p>Salmón, queso crema, palta</p></div>
+              <div class="product-meta"><span>8 PIEZAS</span><span class="price" data-price="0">PRECIO A CONFIRMAR</span></div>
+            </div>
+            <a class="product-add" data-whatsapp-product="Philadelphia" href="#" target="_blank" rel="noopener">AGREGAR AL PEDIDO <span>+</span></a>
+          </article>
+
+          <article class="product" data-cat="clasicos">
+            <button class="product-image" type="button" data-lightbox="California" data-image="https://images.unsplash.com/photo-1553621042-f6e147245754?q=90&w=1600&auto=format&fit=crop">
+              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?q=85&w=1100&auto=format&fit=crop" alt="Roll California" loading="lazy">
+              <span class="view">VIEW 02</span>
+            </button>
+            <div class="product-info">
+              <div><span class="product-cat">ROLL / CLÁSICO</span><h3>California</h3><p>Kanikama, palta, sésamo</p></div>
+              <div class="product-meta"><span>8 PIEZAS</span><span class="price">PRECIO A CONFIRMAR</span></div>
+            </div>
+            <a class="product-add" data-whatsapp-product="California" href="#" target="_blank" rel="noopener">AGREGAR AL PEDIDO <span>+</span></a>
+          </article>
+
+          <article class="product product-wide" data-cat="especiales">
+            <button class="product-image" type="button" data-lightbox="Hot Roll Tempura" data-image="https://images.unsplash.com/photo-1553621042-f6e147245754?q=90&w=1800&auto=format&fit=crop">
+              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?q=85&w=1500&auto=format&fit=crop" alt="Hot Roll Tempura" loading="lazy">
+              <span class="view">VIEW 03</span>
+            </button>
+            <div class="product-info">
+              <div><span class="product-cat">ROLL / ESPECIAL</span><h3>Hot Roll Tempura</h3><p>Langostino tempurizado, salsa spicy</p></div>
+              <div class="product-meta"><span>8 PIEZAS</span><span class="price">PRECIO A CONFIRMAR</span></div>
+            </div>
+            <a class="product-add" data-whatsapp-product="Hot Roll Tempura" href="#" target="_blank" rel="noopener">AGREGAR AL PEDIDO <span>+</span></a>
+          </article>
+
+          <article class="product" data-cat="sashimi">
+            <button class="product-image" type="button" data-lightbox="Sashimi de Salmón" data-image="https://images.unsplash.com/photo-1615361200141-f45040f367be?q=90&w=1600&auto=format&fit=crop">
+              <img src="https://images.unsplash.com/photo-1615361200141-f45040f367be?q=85&w=1100&auto=format&fit=crop" alt="Sashimi de salmón" loading="lazy">
+              <span class="view">VIEW 04</span>
+            </button>
+            <div class="product-info">
+              <div><span class="product-cat">SASHIMI</span><h3>Sashimi de Salmón</h3><p>Cortes frescos del día</p></div>
+              <div class="product-meta"><span>6 PIEZAS</span><span class="price">PRECIO A CONFIRMAR</span></div>
+            </div>
+            <a class="product-add" data-whatsapp-product="Sashimi de Salmón" href="#" target="_blank" rel="noopener">AGREGAR AL PEDIDO <span>+</span></a>
+          </article>
+
+          <article class="product" data-cat="entradas">
+            <button class="product-image" type="button" data-lightbox="Gyosas" data-image="https://images.unsplash.com/photo-1626804475297-411f37c67338?q=90&w=1600&auto=format&fit=crop">
+              <img src="https://images.unsplash.com/photo-1626804475297-411f37c67338?q=85&w=1100&auto=format&fit=crop" alt="Gyosas japonesas" loading="lazy">
+              <span class="view">VIEW 05</span>
+            </button>
+            <div class="product-info">
+              <div><span class="product-cat">ENTRADA</span><h3>Gyosas</h3><p>Cerdo y vegetales, salsa de soja</p></div>
+              <div class="product-meta"><span>5 UNIDADES</span><span class="price">PRECIO A CONFIRMAR</span></div>
+            </div>
+            <a class="product-add" data-whatsapp-product="Gyosas" href="#" target="_blank" rel="noopener">AGREGAR AL PEDIDO <span>+</span></a>
+          </article>
+
+          <article class="product" data-cat="bebidas">
+            <button class="product-image" type="button" data-lightbox="Sake Premium" data-image="https://images.unsplash.com/photo-1579027989054-b11a1d75dc76?q=90&w=1600&auto=format&fit=crop">
+              <img src="https://images.unsplash.com/photo-1579027989054-b11a1d75dc76?q=85&w=1100&auto=format&fit=crop" alt="Sake premium" loading="lazy">
+              <span class="view">VIEW 06</span>
+            </button>
+            <div class="product-info">
+              <div><span class="product-cat">BEBIDA</span><h3>Sake Premium</h3><p>Servido frío, copa o botella</p></div>
+              <div class="product-meta"><span>—</span><span class="price">PRECIO A CONFIRMAR</span></div>
+            </div>
+            <a class="product-add" data-whatsapp-product="Sake Premium" href="#" target="_blank" rel="noopener">AGREGAR AL PEDIDO <span>+</span></a>
+          </article>
+        </div>
+
+        <aside class="order-rail" aria-label="Tu pedido">
+          <span class="rail-label">TU PEDIDO</span>
+          <strong id="orderCount">0</strong>
+          <span>ITEMS</span>
+          <a data-whatsapp-link href="#" target="_blank" rel="noopener">PEDIR POR WHATSAPP →</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="signature">
+      <div class="signature-inner">
+        <div class="signature-head reveal">
+          <p class="eyebrow">04 — SIGNATURE ROLLS</p>
+          <h2>LO QUE<br>TENÉS QUE <em>PROBAR.</em></h2>
+        </div>
+        <div class="signature-products">
+          <article class="signature-item reveal">
+            <span class="signature-no">01</span>
+            <img src="https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=85&w=1200&auto=format&fit=crop" alt="Philadelphia" loading="lazy">
+            <div><h3>PHILADELPHIA</h3><p>Salmón · queso crema · palta</p><span>8 PIEZAS / PRECIO A CONFIRMAR</span></div>
+          </article>
+          <article class="signature-item reveal">
+            <span class="signature-no">02</span>
+            <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?q=85&w=1200&auto=format&fit=crop" alt="Atu Special" loading="lazy">
+            <div><h3>ATU SPECIAL</h3><p>Producto de referencia del pedido actual.</p><span>PRECIO A CONFIRMAR</span></div>
+          </article>
+          <article class="signature-item reveal">
+            <span class="signature-no">03</span>
+            <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?q=85&w=1200&auto=format&fit=crop" alt="Hot Tempura" loading="lazy">
+            <div><h3>HOT TEMPURA</h3><p>Langostino tempurizado · salsa spicy</p><span>8 PIEZAS / PRECIO A CONFIRMAR</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="chef-story" id="experiencia">
+      <div class="chef-image reveal">
+        <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?q=90&w=2200&auto=format&fit=crop" alt="Chef preparando sushi" loading="lazy">
+      </div>
+      <div class="chef-copy reveal">
+        <p class="eyebrow">05 — EXPERIENCIA</p>
+        <h2>EL SUSHI<br>TAMBIÉN<br>ES UN <em>ESPECTÁCULO.</em></h2>
+        <p>Mirar cómo se prepara es parte de la experiencia.</p>
+        <a class="text-link" href="#manifiesto">CONOCÉ NUESTRA HISTORIA <span>→</span></a>
+      </div>
+    </section>
+
+    <section class="reservations" id="reservas">
+      <div class="reservation-wrap">
+        <div class="reservation-intro reveal">
+          <p class="eyebrow">06 — RESERVAS</p>
+          <h2>NOS VEMOS<br>EN <em>LA BARRA.</em></h2>
+          <p>Completá los datos. Al confirmar se abrirá WhatsApp con el mensaje listo para enviar.</p>
+        </div>
+
+        <form class="reservation-form reveal" id="reservationForm">
+          <label>NOMBRE<input id="resName" name="name" type="text" autocomplete="name" required placeholder="Tu nombre"></label>
+          <label>TELÉFONO<input id="resPhone" name="phone" type="tel" autocomplete="tel" required placeholder="+54 9 ..."></label>
+          <div class="form-row">
+            <label>FECHA<input id="resDate" name="date" type="date" required></label>
+            <label>HORA<input id="resTime" name="time" type="time" value="21:00" required></label>
+          </div>
+          <label>PERSONAS<select id="resPeople" name="people"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
+          <button class="button button-red full" type="submit">CONFIRMAR POR WHATSAPP <span>↗</span></button>
+          <p class="form-note">La solicitud se envía a WhatsApp. La confirmación final depende del restaurante.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="delivery" id="delivery">
+      <div class="delivery-inner reveal">
+        <p class="eyebrow">07 — DELIVERY</p>
+        <h2>¿HOY TE<br>QUEDÁS <em>EN CASA?</em></h2>
+        <p>Llevamos ATU hasta tu puerta.</p>
+        <div class="delivery-actions">
+          <a class="delivery-button" data-whatsapp-link href="#" target="_blank" rel="noopener"><span>WHATSAPP</span><b>↗</b></a>
+          <a class="delivery-button disabled" href="#" aria-disabled="true"><span>PEDIDOSYA</span><b>↗</b></a>
+          <a class="delivery-button disabled" href="#" aria-disabled="true"><span>RAPPI</span><b>↗</b></a>
+        </div>
+        <p class="placeholder-note">Los enlaces de PedidosYa y Rappi no estaban disponibles en el material actual y quedan señalizados para reemplazo.</p>
+      </div>
+    </section>
+
+    <section class="reviews" id="resenas">
+      <div class="review-head reveal">
+        <p class="eyebrow">08 — RESEÑAS</p>
+        <span id="reviewCounter">01 / 03</span>
+      </div>
+      <div class="review-stage reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote id="reviewQuote">“El roll tempura es otro nivel, y el arroz siempre en su punto. Ya es nuestro lugar fijo de los viernes.”</blockquote>
+        <p id="reviewAuthor">AGUSTINA <span>· NEUQUÉN CAPITAL</span></p>
+      </div>
+      <div class="review-controls">
+        <button type="button" id="reviewPrev" aria-label="Reseña anterior">←</button>
+        <button type="button" id="reviewNext" aria-label="Siguiente reseña">→</button>
+      </div>
+    </section>
+
+    <section class="gallery" id="galeria">
+      <div class="gallery-head reveal">
+        <p class="eyebrow">09 — GALERÍA</p>
+        <h2>DE LA BARRA<br>A <em>TU MESA.</em></h2>
+      </div>
+      <div class="gallery-grid">
+        <button class="gallery-item g1 reveal" type="button" data-lightbox="Galería 01" data-image="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?q=90&w=1800&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?q=85&w=1100&auto=format&fit=crop" alt="Sushi surtido" loading="lazy"><span>VIEW 01</span></button>
+        <button class="gallery-item g2 reveal" type="button" data-lightbox="Galería 02" data-image="https://images.unsplash.com/photo-1611143669185-af224c5e3252?q=90&w=1800&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?q=85&w=1100&auto=format&fit=crop" alt="Chef preparando sushi" loading="lazy"><span>VIEW 02</span></button>
+        <button class="gallery-item g3 reveal" type="button" data-lightbox="Galería 03" data-image="https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=90&w=1800&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=85&w=1100&auto=format&fit=crop" alt="Roll de sushi" loading="lazy"><span>VIEW 03</span></button>
+        <button class="gallery-item g4 reveal" type="button" data-lightbox="Galería 04" data-image="https://images.unsplash.com/photo-1615361200141-f45040f367be?q=90&w=1800&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1615361200141-f45040f367be?q=85&w=1100&auto=format&fit=crop" alt="Sashimi" loading="lazy"><span>VIEW 04</span></button>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="final-media"><img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?q=90&w=2200&auto=format&fit=crop" alt="Sushi ATU" loading="lazy"></div>
+      <div class="final-overlay"></div>
+      <div class="final-content reveal">
+        <p class="eyebrow">10 — ESTA NOCHE</p>
+        <h2>ESTA NOCHE<br>SE COME<br><em>SUSHI.</em></h2>
+        <a class="button button-red huge" data-whatsapp-link href="#" target="_blank" rel="noopener">PEDIR AHORA <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contacto">
+    <div class="footer-top">
+      <div>
+        <span class="brand-mark">ATU</span>
+        <p>Sushi y cocina japonesa en Neuquén.<br>Cortes al momento, ingredientes frescos.</p>
+      </div>
+      <div>
+        <span class="footer-label">NAVEGACIÓN</span>
+        <a href="#menu">MENÚ</a><a href="#reservas">RESERVAS</a><a href="#delivery">DELIVERY</a>
+      </div>
+      <div>
+        <span class="footer-label">CONTACTO</span>
+        <a data-whatsapp-link href="#" target="_blank" rel="noopener">WHATSAPP</a>
+        <span class="footer-placeholder">hola@atusushi.com.ar*</span>
+        <span class="footer-placeholder">Neuquén Capital*</span>
+      </div>
+      <div>
+        <span class="footer-label">SOCIAL</span>
+        <a href="#" aria-label="Instagram de ATU SUSHI">INSTAGRAM*</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> ATU SUSHI</span>
+      <span>HECHO EN NEUQUÉN.</span>
+    </div>
+  </footer>
+
+  <nav class="mobile-sticky" aria-label="Acciones rápidas">
+    <a href="#menu">VER MENÚ</a>
+    <a data-whatsapp-link href="#" target="_blank" rel="noopener">PEDIR AHORA</a>
+  </nav>
+
+  <dialog class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Cerrar">×</button>
+    <button class="lightbox-prev" id="lightboxPrev" type="button" aria-label="Imagen anterior">←</button>
+    <figure>
+      <img id="lightboxImage" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox-next" id="lightboxNext" type="button" aria-label="Siguiente imagen">→</button>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
