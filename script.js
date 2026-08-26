@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
      AÑO AUTOMÁTICO
      ========================================================= */
 
-  qsa("[data-current-year]").forEach((element) => {
+  qsa("[data-current-year], #year").forEach((element) => {
     element.textContent = new Date().getFullYear();
   });
 
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
      SCROLL PROGRESS
      ========================================================= */
 
-  const progressBar = qs("[data-scroll-progress]");
+  const progressBar = qs("[data-scroll-progress], #scrollProgress");
 
   const updateScrollProgress = () => {
     if (!progressBar) return;
@@ -68,15 +68,19 @@ document.addEventListener("DOMContentLoaded", () => {
      MOBILE MENU
      ========================================================= */
 
-  const menuButton = qs("[data-menu-toggle]");
-  const mobileMenu = qs("[data-mobile-menu]");
-  const mobileMenuLinks = qsa("[data-mobile-link]");
+  const menuButton = qs("[data-menu-toggle], #menuToggle");
+  const mobileMenu = qs("[data-mobile-menu], #mobileMenu");
+  const mobileMenuLinks = qsa("[data-mobile-link], #mobileMenu a");
 
   const setMenuState = (open) => {
     if (!menuButton || !mobileMenu) return;
 
     menuButton.setAttribute("aria-expanded", String(open));
     mobileMenu.classList.toggle("is-open", open);
+    if (mobileMenu instanceof HTMLDialogElement) {
+      if (open && !mobileMenu.open) mobileMenu.showModal();
+      if (!open && mobileMenu.open) mobileMenu.close();
+    }
     document.body.classList.toggle("menu-open", open);
   };
 
@@ -93,6 +97,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  mobileMenu?.addEventListener("close", () => {
+    document.body.classList.remove("menu-open");
+    menuButton?.setAttribute("aria-expanded", "false");
+    mobileMenu.classList.remove("is-open");
+  });
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       setMenuState(false);
@@ -103,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
      HEADER AL HACER SCROLL
      ========================================================= */
 
-  const header = qs("[data-header]");
+  const header = qs("[data-header], #siteHeader");
 
   const updateHeader = () => {
     if (!header) return;
@@ -112,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "is-scrolled",
       window.scrollY > 50
     );
+    header.classList.toggle("scrolled", window.scrollY > 50);
   };
 
   window.addEventListener("scroll", updateHeader, {
@@ -124,9 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
      INTERSECTION OBSERVER
      ========================================================= */
 
-  const animatedElements = qsa(
-    "[data-reveal], .reveal, .fade-up"
-  );
+  const animatedElements = qsa("[data-reveal], .reveal, .fade-up");
 
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
@@ -134,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
 
-          entry.target.classList.add("is-visible");
+          entry.target.classList.add("is-visible", "in");
 
           observerInstance.unobserve(entry.target);
         });
@@ -150,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   } else {
     animatedElements.forEach((element) => {
-      element.classList.add("is-visible");
+      element.classList.add("is-visible", "in");
     });
   }
 
@@ -159,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   const filterButtons = qsa("[data-filter]");
-  const menuItems = qsa("[data-category]");
+  const menuItems = qsa("[data-category], .product[data-cat]");
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -168,16 +177,18 @@ document.addEventListener("DOMContentLoaded", () => {
       filterButtons.forEach((item) => {
         item.classList.remove("active");
         item.setAttribute("aria-pressed", "false");
+        item.setAttribute("aria-selected", "false");
       });
 
       button.classList.add("active");
       button.setAttribute("aria-pressed", "true");
+      button.setAttribute("aria-selected", "true");
 
       menuItems.forEach((item) => {
-        const category = item.dataset.category;
+        const category = item.dataset.category || item.dataset.cat;
 
         const shouldShow =
-          filter === "all" || category === filter;
+          filter === "all" || filter === "todos" || category === filter;
 
         item.classList.toggle(
           "is-hidden",
@@ -245,17 +256,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const whatsappBase =
     `https://wa.me/${BUSINESS.whatsapp}`;
 
+  const orderCount = qs("#orderCount");
+  let selectedProducts = 0;
+
   const createWhatsAppUrl = (message) => {
     return `${whatsappBase}?text=${encodeURIComponent(message)}`;
   };
 
-  qsa("[data-whatsapp]").forEach((button) => {
+  qsa("[data-whatsapp], [data-whatsapp-link], [data-whatsapp-product]").forEach((button) => {
     button.addEventListener("click", (event) => {
       event.preventDefault();
 
-      const message =
-        button.dataset.whatsapp ||
-        "Hola ATU Sushi, quiero hacer una consulta.";
+      const product = safeText(button.dataset.whatsappProduct);
+      const message = button.dataset.whatsapp ||
+        (product
+          ? `Hola ATU Sushi, quiero pedir ${product}. ¿Me pasan disponibilidad y precio?`
+          : "Hola ATU Sushi, quiero hacer una consulta.");
+
+      if (product && orderCount) {
+        selectedProducts += 1;
+        orderCount.textContent = String(selectedProducts);
+      }
 
       window.open(
         createWhatsAppUrl(message),
@@ -295,7 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   const reservationForm =
-    qs("[data-reservation-form]");
+    qs("[data-reservation-form], #reservationForm");
 
   reservationForm?.addEventListener(
     "submit",
@@ -315,7 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
         safeText(formData.get("time"));
 
       const guests =
-        safeText(formData.get("guests"));
+        safeText(formData.get("guests") || formData.get("people"));
 
       const message =
         safeText(formData.get("message"));
@@ -466,19 +487,19 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   const galleryItems =
-    qsa("[data-gallery-item]");
+    qsa("[data-gallery-item], [data-lightbox]:not(dialog)");
 
   const lightbox =
-    qs("[data-lightbox]");
+    qs("dialog.lightbox, [data-lightbox-dialog]");
 
   const lightboxImage =
-    qs("[data-lightbox-image]");
+    qs("[data-lightbox-image], #lightboxImage");
 
   const lightboxClose =
-    qs("[data-lightbox-close]");
+    qs("[data-lightbox-close], #lightboxClose");
 
   const lightboxCaption =
-    qs("[data-lightbox-caption]");
+    qs("[data-lightbox-caption], #lightboxCaption");
 
   const openLightbox = (item) => {
     if (!lightbox || !lightboxImage) return;
@@ -488,9 +509,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!image) return;
 
-    const source =
-      image.currentSrc ||
-      image.src;
+    const source = item.dataset.image || image.currentSrc || image.src;
 
     lightboxImage.src = source;
 
@@ -503,6 +522,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     lightbox.classList.add("is-open");
+    if (lightbox instanceof HTMLDialogElement && !lightbox.open) lightbox.showModal();
     lightbox.setAttribute(
       "aria-hidden",
       "false"
@@ -516,9 +536,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeLightbox = () => {
     if (!lightbox) return;
 
-    lightbox.classList.remove(
-      "is-open"
-    );
+    lightbox.classList.remove("is-open");
+    if (lightbox instanceof HTMLDialogElement && lightbox.open) lightbox.close();
 
     lightbox.setAttribute(
       "aria-hidden",
