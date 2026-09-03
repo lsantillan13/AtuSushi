@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0A0A0A">
   <meta name="description" content="ATU SUSHI — Sushi y cocina japonesa en Neuquén.">
+  <link rel="icon" type="image/svg+xml" href="atu-favicon.svg">
   <title>ATU SUSHI — Japanese Kitchen · Neuquén</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +28,7 @@
       <a href="#delivery">Delivery</a>
     </nav>
 
-    <a class="header-cta" data-whatsapp-link href="#" target="_blank" rel="noopener">PEDIR AHORA <span>↗</span></a>
+    <a class="header-cta" data-menu-link href="Menu-Paso-A-Paso.html">PEDIR AHORA <span>↗</span></a>
 
     <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
       <span></span><span></span>
@@ -38,7 +39,7 @@
     <div class="mobile-menu-inner">
       <div class="mobile-menu-top">
         <span class="brand-mark">ATU</span>
-        <span class="jp-large">鮨</span>
+        <div class="mobile-menu-actions"><span class="jp-large">鮨</span><button class="mobile-menu-close" id="mobileMenuClose" type="button" aria-label="Cerrar menú">×</button></div>
       </div>
       <nav>
         <a href="#menu">MENÚ <span>01</span></a>
@@ -46,7 +47,7 @@
         <a href="#reservas">RESERVAS <span>03</span></a>
         <a href="#delivery">DELIVERY <span>04</span></a>
       </nav>
-      <a class="mobile-order" data-whatsapp-link href="#" target="_blank" rel="noopener">PEDIR AHORA <span>→</span></a>
+      <a class="mobile-order" data-menu-link href="Menu-Paso-A-Paso.html">PEDIR AHORA <span>→</span></a>
     </div>
   </dialog>
 
@@ -63,8 +64,8 @@
         <h1>SUSHI.<br>HECHO <em>AL MOMENTO.</em></h1>
         <p class="hero-copy">Cada corte. Cada grano de arroz. Cada pieza.<br>Preparada con precisión.</p>
         <div class="hero-actions">
-          <a class="button button-red" data-whatsapp-link href="#" target="_blank" rel="noopener">PEDIR AHORA <span>→</span></a>
-          <a class="button button-line" href="#menu">VER MENÚ</a>
+          <a class="button button-red" data-menu-link href="Menu-Paso-A-Paso.html">PEDIR AHORA <span>→</span></a>
+          <a class="button button-line" data-menu-link href="Menu-Paso-A-Paso.html">VER MENÚ</a>
         </div>
       </div>
 
@@ -154,50 +155,50 @@
         <div class="products" id="productGrid">
           <article class="product" data-cat="clasicos">
             <button class="product-image" type="button" data-lightbox="Philadelphia" data-image="https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=90&w=1600&auto=format&fit=crop">
-              <img src="https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=85&w=1100&auto=format&fit=crop" alt="Roll Philadelphia" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=85&w=1100&auto=format&fit=crop" alt="Roll New York Phila" loading="lazy">
               <span class="view">VIEW 01</span>
             </button>
             <div class="product-info">
-              <div><span class="product-cat">ROLL / CLÁSICO</span><h3>Philadelphia</h3><p>Salmón, queso crema, palta</p></div>
-              <div class="product-meta"><span>8 PIEZAS</span><span class="price" data-price="0">PRECIO A CONFIRMAR</span></div>
+              <div><span class="product-cat">ROLL / CLÁSICO</span><h3>New York Phila</h3><p>Salmón, queso crema, palta, sésamo</p></div>
+              <div class="product-meta"><span>8 PIEZAS</span><span class="price">$28.900</span></div>
             </div>
-            <a class="product-add" data-whatsapp-product="Philadelphia" href="#" target="_blank" rel="noopener">AGREGAR AL PEDIDO <span>+</span></a>
+            <a class="product-add" data-menu-link data-menu-product="philadelphia" href="Menu-Paso-A-Paso.html">AGREGAR AL PEDIDO <span>+</span></a>
           </article>
 
           <article class="product" data-cat="clasicos">
             <button class="product-image" type="button" data-lightbox="California" data-image="https://images.unsplash.com/photo-1553621042-f6e147245754?q=90&w=1600&auto=format&fit=crop">
-              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?q=85&w=1100&auto=format&fit=crop" alt="Roll California" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?q=85&w=1100&auto=format&fit=crop" alt="Roll Californication" loading="lazy">
               <span class="view">VIEW 02</span>
             </button>
             <div class="product-info">
-              <div><span class="product-cat">ROLL / CLÁSICO</span><h3>California</h3><p>Kanikama, palta, sésamo</p></div>
-              <div class="product-meta"><span>8 PIEZAS</span><span class="price">PRECIO A CONFIRMAR</span></div>
+              <div><span class="product-cat">ROLL / CLÁSICO</span><h3>Californication</h3><p>Kani salad, palta, queso crema, tamago</p></div>
+              <div class="product-meta"><span>8 PIEZAS</span><span class="price">$25.500</span></div>
             </div>
-            <a class="product-add" data-whatsapp-product="California" href="#" target="_blank" rel="noopener">AGREGAR AL PEDIDO <span>+</span></a>
+            <a class="product-add" data-menu-link data-menu-product="california" href="Menu-Paso-A-Paso.html">AGREGAR AL PEDIDO <span>+</span></a>
           </article>
 
           <article class="product product-wide" data-cat="especiales">
             <button class="product-image" type="button" data-lightbox="Hot Roll Tempura" data-image="https://images.unsplash.com/photo-1553621042-f6e147245754?q=90&w=1800&auto=format&fit=crop">
-              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?q=85&w=1500&auto=format&fit=crop" alt="Hot Roll Tempura" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?q=85&w=1500&auto=format&fit=crop" alt="Roll Crack" loading="lazy">
               <span class="view">VIEW 03</span>
             </button>
             <div class="product-info">
-              <div><span class="product-cat">ROLL / ESPECIAL</span><h3>Hot Roll Tempura</h3><p>Langostino tempurizado, salsa spicy</p></div>
-              <div class="product-meta"><span>8 PIEZAS</span><span class="price">PRECIO A CONFIRMAR</span></div>
+              <div><span class="product-cat">ROLL / HOT</span><h3>Crack</h3><p>Salmón, queso crema, palta, fideos de arroz crocantes</p></div>
+              <div class="product-meta"><span>8 PIEZAS</span><span class="price">$34.200</span></div>
             </div>
-            <a class="product-add" data-whatsapp-product="Hot Roll Tempura" href="#" target="_blank" rel="noopener">AGREGAR AL PEDIDO <span>+</span></a>
+            <a class="product-add" data-menu-link data-menu-product="hot-roll-tempura" href="Menu-Paso-A-Paso.html">AGREGAR AL PEDIDO <span>+</span></a>
           </article>
 
           <article class="product" data-cat="sashimi">
             <button class="product-image" type="button" data-lightbox="Sashimi de Salmón" data-image="https://images.unsplash.com/photo-1615361200141-f45040f367be?q=90&w=1600&auto=format&fit=crop">
-              <img src="https://images.unsplash.com/photo-1615361200141-f45040f367be?q=85&w=1100&auto=format&fit=crop" alt="Sashimi de salmón" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1615361200141-f45040f367be?q=85&w=1100&auto=format&fit=crop" alt="Sashimi Sake" loading="lazy">
               <span class="view">VIEW 04</span>
             </button>
             <div class="product-info">
-              <div><span class="product-cat">SASHIMI</span><h3>Sashimi de Salmón</h3><p>Cortes frescos del día</p></div>
-              <div class="product-meta"><span>6 PIEZAS</span><span class="price">PRECIO A CONFIRMAR</span></div>
+              <div><span class="product-cat">CORTES</span><h3>Sashimi Sake</h3><p>Cortes frescos de salmón del día</p></div>
+              <div class="product-meta"><span>5 PIEZAS</span><span class="price">$20.800</span></div>
             </div>
-            <a class="product-add" data-whatsapp-product="Sashimi de Salmón" href="#" target="_blank" rel="noopener">AGREGAR AL PEDIDO <span>+</span></a>
+            <a class="product-add" data-menu-link data-menu-product="sashimi-de-salmon" href="Menu-Paso-A-Paso.html">AGREGAR AL PEDIDO <span>+</span></a>
           </article>
 
           <article class="product" data-cat="entradas">
@@ -206,22 +207,22 @@
               <span class="view">VIEW 05</span>
             </button>
             <div class="product-info">
-              <div><span class="product-cat">ENTRADA</span><h3>Gyosas</h3><p>Cerdo y vegetales, salsa de soja</p></div>
-              <div class="product-meta"><span>5 UNIDADES</span><span class="price">PRECIO A CONFIRMAR</span></div>
+              <div><span class="product-cat">STREET FOOD</span><h3>Gyozas Oink</h3><p>Una entrada para compartir</p></div>
+              <div class="product-meta"><span>PORCIÓN</span><span class="price">$32.300</span></div>
             </div>
-            <a class="product-add" data-whatsapp-product="Gyosas" href="#" target="_blank" rel="noopener">AGREGAR AL PEDIDO <span>+</span></a>
+            <a class="product-add" data-menu-link data-menu-product="gyosas" href="Menu-Paso-A-Paso.html">AGREGAR AL PEDIDO <span>+</span></a>
           </article>
 
           <article class="product" data-cat="bebidas">
             <button class="product-image" type="button" data-lightbox="Sake Premium" data-image="https://images.unsplash.com/photo-1579027989054-b11a1d75dc76?q=90&w=1600&auto=format&fit=crop">
-              <img src="https://images.unsplash.com/photo-1579027989054-b11a1d75dc76?q=85&w=1100&auto=format&fit=crop" alt="Sake premium" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1579027989054-b11a1d75dc76?q=85&w=1100&auto=format&fit=crop" alt="Asahi japonesa" loading="lazy">
               <span class="view">VIEW 06</span>
             </button>
             <div class="product-info">
-              <div><span class="product-cat">BEBIDA</span><h3>Sake Premium</h3><p>Servido frío, copa o botella</p></div>
-              <div class="product-meta"><span>—</span><span class="price">PRECIO A CONFIRMAR</span></div>
+              <div><span class="product-cat">BEBIDA</span><h3>Asahi Japonesa</h3><p>Cerveza japonesa para acompañar tu pedido</p></div>
+              <div class="product-meta"><span>330CC</span><span class="price">$13.000</span></div>
             </div>
-            <a class="product-add" data-whatsapp-product="Sake Premium" href="#" target="_blank" rel="noopener">AGREGAR AL PEDIDO <span>+</span></a>
+            <a class="product-add" data-menu-link data-menu-product="sake-premium" href="Menu-Paso-A-Paso.html">AGREGAR AL PEDIDO <span>+</span></a>
           </article>
         </div>
 
@@ -232,6 +233,7 @@
           <a data-whatsapp-link href="#" target="_blank" rel="noopener">PEDIR POR WHATSAPP →</a>
         </aside>
       </div>
+      <div class="menu-complete-cta"><a class="button button-line" data-menu-link data-menu-guide href="Menu-Paso-A-Paso.html">VER MENÚ COMPLETO <span>→</span></a><p>52 opciones · rolls, combinaciones, entradas, bebidas y más</p></div>
     </section>
 
     <section class="signature">
@@ -343,7 +345,7 @@
       <div class="final-content reveal">
         <p class="eyebrow">10 — ESTA NOCHE</p>
         <h2>ESTA NOCHE<br>SE COME<br><em>SUSHI.</em></h2>
-        <a class="button button-red huge" data-whatsapp-link href="#" target="_blank" rel="noopener">PEDIR AHORA <span>→</span></a>
+        <a class="button button-red huge" data-menu-link href="Menu-Paso-A-Paso.html">PEDIR AHORA <span>→</span></a>
       </div>
     </section>
   </main>
@@ -366,7 +368,7 @@
       </div>
       <div>
         <span class="footer-label">SOCIAL</span>
-        <a href="#" aria-label="Instagram de ATU SUSHI">INSTAGRAM*</a>
+        <span class="footer-placeholder" aria-label="Instagram de ATU SUSHI">INSTAGRAM</span>
       </div>
     </div>
     <div class="footer-bottom">
@@ -376,8 +378,8 @@
   </footer>
 
   <nav class="mobile-sticky" aria-label="Acciones rápidas">
-    <a href="#menu">VER MENÚ</a>
-    <a data-whatsapp-link href="#" target="_blank" rel="noopener">PEDIR AHORA</a>
+    <a data-menu-link href="Menu-Paso-A-Paso.html">VER MENÚ</a>
+    <a data-menu-link href="Menu-Paso-A-Paso.html">PEDIR AHORA</a>
   </nav>
 
   <dialog class="lightbox" id="lightbox">

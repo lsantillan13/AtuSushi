@@ -30,6 +30,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const safeText = (value) =>
     String(value ?? "").trim();
 
+  qsa("[data-menu-link][data-menu-product]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      localStorage.setItem("atu_pending_product", safeText(link.dataset.menuProduct));
+      window.location.href = link.href;
+    });
+  });
+
+  qsa("[data-menu-link][data-menu-guide]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      localStorage.setItem("atu_menu_guide", "true");
+      window.location.href = link.href;
+    });
+  });
+
   /* =========================================================
      AÑO AUTOMÁTICO
      ========================================================= */
@@ -70,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const menuButton = qs("[data-menu-toggle], #menuToggle");
   const mobileMenu = qs("[data-mobile-menu], #mobileMenu");
+  const mobileMenuClose = qs("[data-mobile-menu-close], #mobileMenuClose");
   const mobileMenuLinks = qsa("[data-mobile-link], #mobileMenu a");
 
   const setMenuState = (open) => {
@@ -90,6 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setMenuState(!isOpen);
   });
+
+  mobileMenuClose?.addEventListener("click", () => setMenuState(false));
 
   mobileMenuLinks.forEach((link) => {
     link.addEventListener("click", () => {
@@ -184,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
       button.setAttribute("aria-pressed", "true");
       button.setAttribute("aria-selected", "true");
 
-      menuItems.forEach((item) => {
+      qsa("[data-category], .product[data-cat]").forEach((item) => {
         const category = item.dataset.category || item.dataset.cat;
 
         const shouldShow =
@@ -263,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return `${whatsappBase}?text=${encodeURIComponent(message)}`;
   };
 
-  qsa("[data-whatsapp], [data-whatsapp-link], [data-whatsapp-product]").forEach((button) => {
+  qsa("[data-whatsapp]:not([data-menu-link]), [data-whatsapp-link]:not([data-menu-link]), [data-whatsapp-product]:not([data-menu-link])").forEach((button) => {
     button.addEventListener("click", (event) => {
       event.preventDefault();
 
@@ -392,6 +411,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  qsa(".delivery-button.disabled").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+    });
+  });
+
   /* =========================================================
      RESEÑAS — SLIDER
      ========================================================= */
@@ -460,6 +485,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   showReview(0);
   startReviewAutoplay();
+
+  const staticReviewQuote = qs("#reviewQuote");
+  const staticReviewAuthor = qs("#reviewAuthor");
+  const staticReviewCounter = qs("#reviewCounter");
+  const staticReviewPrev = qs("#reviewPrev");
+  const staticReviewNext = qs("#reviewNext");
+  const staticReviews = [
+    {
+      quote: "“El roll tempura es otro nivel, y el arroz siempre en su punto. Ya es nuestro lugar fijo de los viernes.”",
+      author: "AGUSTINA",
+      location: "NEUQUÉN CAPITAL"
+    }
+  ];
+  let staticReviewIndex = 0;
+
+  const showStaticReview = (index) => {
+    if (!staticReviewQuote || !staticReviewAuthor || !staticReviewCounter) return;
+    staticReviewIndex = (index + staticReviews.length) % staticReviews.length;
+    const review = staticReviews[staticReviewIndex];
+    staticReviewQuote.textContent = review.quote;
+    staticReviewAuthor.innerHTML = `${review.author} <span>· ${review.location}</span>`;
+    staticReviewCounter.textContent = `${String(staticReviewIndex + 1).padStart(2, "0")} / ${String(staticReviews.length).padStart(2, "0")}`;
+  };
+
+  staticReviewPrev?.addEventListener("click", () => showStaticReview(staticReviewIndex - 1));
+  staticReviewNext?.addEventListener("click", () => showStaticReview(staticReviewIndex + 1));
+  if (staticReviews.length <= 1) {
+    staticReviewPrev?.setAttribute("hidden", "");
+    staticReviewNext?.setAttribute("hidden", "");
+  }
+  showStaticReview(0);
 
   /* =========================================================
      PAUSAR AUTOPLAY CUANDO EL USUARIO INTERACTÚA
