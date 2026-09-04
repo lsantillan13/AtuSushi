@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs>
+  <radialGradient id="bg" cx="80%" cy="0%" r="90%"><stop offset="0" stop-color="#3a281b"/><stop offset=".48" stop-color="#171310"/><stop offset="1" stop-color="#090909"/></radialGradient>
+  <linearGradient id="line" x1="0" x2="1"><stop stop-color="#d62828"/><stop offset="1" stop-color="#c99a43"/></linearGradient>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<path d="M0 530H1200" stroke="#f4f0e8" stroke-opacity=".14"/>
+<path d="M0 527H560" stroke="url(#line)" stroke-width="4"/>
+<circle cx="1010" cy="110" r="180" fill="none" stroke="#c99a43" stroke-opacity=".14"/>
+<circle cx="1010" cy="110" r="112" fill="none" stroke="#d62828" stroke-opacity=".16"/>
+<text x="80" y="130" fill="#c99a43" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="8">ATU SUSHI</text>
+<text x="80" y="285" fill="#f4f0e8" font-family="Arial,sans-serif" font-size="86" font-weight="800" letter-spacing="2">DEL CLIENTE</text>
+<text x="80" y="380" fill="#f4f0e8" font-family="Arial,sans-serif" font-size="86" font-weight="800" letter-spacing="2">HASTA <tspan fill="#c99a43">LISTO.</tspan></text>
+<text x="82" y="470" fill="#a2a09a" font-family="Arial,sans-serif" font-size="24">Demo interactiva · menú · pedidos · cocina · operación</text>
+<text x="80" y="580" fill="#f4f0e8" font-family="Arial,sans-serif" font-size="18" letter-spacing="4">ATU-SUSHI.VERCEL.APP</text>
+</svg>

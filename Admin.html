@@ -94,7 +94,7 @@ html,body{max-width:100%;overflow-x:hidden}.header>div:first-child{min-width:0}.
     <select id="filterFecha" class="input max-w-[140px]"><option>HOY</option><option>ESTA SEMANA</option><option>ESTE MES</option></select>
     <div class="flex gap-1 ml-auto"><button class="filter-chip btn-bone py-1" data-chip="TODOS">TODOS</button><button class="filter-chip btn-bone py-1" data-chip="delivery">DELIVERY</button><button class="filter-chip btn-bone py-1" data-chip="pickup">RETIRO</button><button class="filter-chip btn-bone py-1" data-chip="mp">MP PAGADO</button></div>
    </div>
-   <div class="overflow-auto"><table class="w-full min-w-[900px]"><thead><tr><th>ID</th><th>CLIENTE / TEL</th><th>DETALLE</th><th>TOTAL</th><th>ESTADO</th><th>PAGO</th><th>FULFILLMENT</th><th>HORA</th><th>ACC</th></tr></thead><tbody id="pedidosBody"></tbody></table></div>
+  <div class="overflow-auto"><table class="w-full min-w-[980px]"><thead><tr><th>ID</th><th>ORIGEN</th><th>CLIENTE / TEL</th><th>DETALLE</th><th>TOTAL</th><th>ESTADO</th><th>PAGO</th><th>FULFILLMENT</th><th>HORA</th><th>ACC</th></tr></thead><tbody id="pedidosBody"></tbody></table></div>
   </section>
 
   <!-- VIEW MENU -->
@@ -150,7 +150,8 @@ html,body{max-width:100%;overflow-x:hidden}.header>div:first-child{min-width:0}.
   <div class="flex flex-wrap gap-2 mb-6" id="statusFlow"></div>
   <div id="timeline" class="relative pl-6 border-l border-[var(--line)] flex flex-col gap-4 mb-6"></div>
   <div class="grid grid-cols-1 gap-4">
-   <div class="card"><div class="eyebrow mb-2">CLIENTE</div><div id="dCliente"></div></div>
+  <div class="card"><div class="eyebrow mb-2">ORIGEN</div><div id="dOrigen"></div></div>
+  <div class="card"><div class="eyebrow mb-2">CLIENTE</div><div id="dCliente"></div></div>
    <div class="card"><div class="eyebrow mb-2">ENTREGA</div><div id="dEntrega"></div></div>
    <div class="card"><div class="eyebrow mb-2">DETALLE PEDIDO</div><div id="dDetalle"></div></div>
    <div class="card"><div class="eyebrow mb-2">NOTAS</div><div id="dNotas" class="text-[13px]"></div></div>
@@ -263,11 +264,14 @@ function genMockOrders(){
   const product=PRODUCTS.find(item=>item.name===productName)||PRODUCTS[index%PRODUCTS.length];
   const item={id:product.id,name:product.name,variantId:product.variants[0].id,variantLabel:product.variants[0].label,quantity:1,unitPrice:product.variants[0].price};
   const total=item.unitPrice;
-  return {id:`ATU-${1001+index}`,customer:{name,phone:`549299555${1000+index}`,address:'',reference:'',notes:''},items:[item],subtotal:total,total,fulfillment:'pickup',payment:{method:paymentMethod,status:paymentStatus,mpId:paymentMethod==='mercadopago'?'MP-DEMO-'+(1001+index):null},status,createdAt:new Date(Date.now()-(index+1)*1800000).toISOString(),timeline:[{status:'pendiente',at:new Date(Date.now()-(index+2)*1800000).toISOString()}]};
+  return {id:`ATU-${1001+index}`,source:['web','whatsapp','manual'][index%3],customer:{name,phone:`549299555${1000+index}`,address:'',reference:'',notes:''},items:[item],subtotal:total,total,fulfillment:'pickup',payment:{method:paymentMethod,status:paymentStatus,mpId:paymentMethod==='mercadopago'?'MP-DEMO-'+(1001+index):null},status,createdAt:new Date(Date.now()-(index+1)*1800000).toISOString(),timeline:[{status:'pendiente',at:new Date(Date.now()-(index+2)*1800000).toISOString()}]};
  });
  save(LS_ORDERS, orders); return orders;
 }
 let ORDERS=genMockOrders();
+ORDERS=ORDERS.map((order,index)=>({...order,source:order.source||['web','whatsapp','manual'][index%3]}));
+save(LS_ORDERS,ORDERS);
+const orderOrigin=order=>{if(order.source==='checkout'||order.source==='web')return 'WEB';if(order.source==='whatsapp'||order.channel==='whatsapp')return 'WHATSAPP';if(order.source==='manual'||order.channel==='table')return 'MESA / MANUAL';return 'DEMO';};
 window._fulfill=ORDERS.some(order=>order.source==='checkout'||order.source==='manual')?'TODOS':'pickup';
 window._pago='TODOS';
 
@@ -296,7 +300,7 @@ function renderPedidos(){
  list.forEach(o=>{
   const tr=document.createElement('tr');
   const badgeCls={pendiente:'badge-pending',confirmado:'badge-confirmed',en_preparacion:'badge-prep',listo:'badge-ready',entregado:'badge-delivered',cancelado:'badge-canceled'}[o.status]||'';
-  tr.innerHTML=`<td class="anton">${o.id}</td><td><div class="font-bold">${o.customer.name}</div><div class="text-[11px] text-[var(--gray)]">${o.customer.phone}</div></td><td class="text-[11px]">${o.items.map(i=>`${i.quantity}x ${i.name}`).join('<br>')}</td><td class="anton">${formatPrice(o.total)}</td><td><span class="badge ${badgeCls}">${o.status}</span></td><td><span class="badge">${o.payment.method} ${o.payment.status==='approved'?'✅':''}</span></td><td>${o.fulfillment}</td><td class="text-[11px]">${new Date(o.createdAt).toLocaleTimeString()}</td><td><button class="btn-bone py-1 openPedido" data-id="${o.id}">↗</button> <a href="https://wa.me/${o.customer.phone.replace(/[^0-9]/g,'')}" target="_blank" class="btn-bone py-1">W</a></td>`;
+  tr.innerHTML=`<td class="anton">${o.id}</td><td><span class="badge">${orderOrigin(o)}</span></td><td><div class="font-bold">${o.customer.name}</div><div class="text-[11px] text-[var(--gray)]">${o.customer.phone}</div></td><td class="text-[11px]">${o.items.map(i=>`${i.quantity}x ${i.name}`).join('<br>')}</td><td class="anton">${formatPrice(o.total)}</td><td><span class="badge ${badgeCls}">${o.status}</span></td><td><span class="badge">${o.payment.method} ${o.payment.status==='approved'?'✅':''}</span></td><td>${o.fulfillment}</td><td class="text-[11px]">${new Date(o.createdAt).toLocaleTimeString()}</td><td><button class="btn-bone py-1 openPedido" data-id="${o.id}">↗</button> <a href="https://wa.me/${o.customer.phone.replace(/[^0-9]/g,'')}" target="_blank" class="btn-bone py-1">W</a></td>`;
   body.appendChild(tr);
  });
  document.querySelectorAll('.openPedido').forEach(b=>b.onclick=()=>openPedido(b.dataset.id));
@@ -316,6 +320,7 @@ let currentPedido=null;
 function openPedido(id){
  const o=ORDERS.find(x=>x.id===id); if(!o) return; currentPedido=o;
  document.getElementById('dId').textContent=o.id;
+ document.getElementById('dOrigen').textContent=orderOrigin(o);
  document.getElementById('dTime').textContent=new Date(o.createdAt).toLocaleString();
  document.getElementById('dCliente').innerHTML=`${o.customer.name}<br><span class="text-[11px] text-[var(--gray)]">${o.customer.phone}</span>`;
  document.getElementById('dEntrega').innerHTML=`${o.fulfillment.toUpperCase()}<br>${o.customer.address||'Retiro en local'}`;
@@ -483,7 +488,7 @@ const syncFilterButtons=()=>{document.querySelectorAll('.filter-fulfill').forEac
 document.querySelectorAll('.filter-fulfill').forEach(b=>b.onclick=()=>{window._fulfill=b.dataset.f; syncFilterButtons(); renderPedidos();});
 document.querySelectorAll('.filter-pago').forEach(b=>b.onclick=()=>{window._pago=b.dataset.p; syncFilterButtons(); renderPedidos();});
 document.getElementById('exportCsv').onclick=()=>{
- const rows=[['ID','Cliente','Telefono','Total','Estado','Pago','Fulfillment']].concat(ORDERS.map(o=>[o.id,o.customer.name,o.customer.phone,o.total,o.status,o.payment.method,o.fulfillment]));
+ const rows=[['ID','Origen','Cliente','Telefono','Total','Estado','Pago','Fulfillment']].concat(ORDERS.map(o=>[o.id,orderOrigin(o),o.customer.name,o.customer.phone,o.total,o.status,o.payment.method,o.fulfillment]));
  const csv=rows.map(row=>row.map(value=>`"${String(value??'').replace(/"/g,'""')}"`).join(',')).join('\n'); const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='pedidos_atu.csv'; a.click(); URL.revokeObjectURL(url);
 };
 document.getElementById('exportResCsv').onclick=()=>{
