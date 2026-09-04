@@ -10,8 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
      Reemplazá estos datos por los reales de ATU.
      ========================================================= */
 
+  let savedBusinessConfig = {};
+  try {
+    savedBusinessConfig = JSON.parse(localStorage.getItem("atu_mp_config") || "{}");
+  } catch {
+    savedBusinessConfig = {};
+  }
+
   const BUSINESS = {
-    whatsapp: "5492990000000",
+    whatsapp: savedBusinessConfig.whatsappNumber || "5492990000000",
     email: "hola@atusushi.com.ar",
     pedidosYa: "#",
     rappi: "#"
@@ -45,6 +52,17 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = link.href;
     });
   });
+
+  const pausedProducts=(()=>{try{return JSON.parse(localStorage.getItem('atu_paused_products')||'[]')}catch{return[]}})();
+  const stock=(()=>{try{return JSON.parse(localStorage.getItem('atu_stock_v1')||'{}')}catch{return{}}})();
+  const stockBlocked=(text)=>Object.entries(stock).some(([key,item])=>Number(item.quantity)<=0&&((key==='salmon'&&/salm[oó]n/i.test(text))||(key==='langostinos'&&/langostino/i.test(text))||(key==='palta'&&/palta/i.test(text))||(key==='quesoCrema'&&/queso\s*crema/i.test(text))));
+  const landingProductIds={philadelphia:'new-york-phila',california:'californication','hot-roll-tempura':'crack','sashimi-de-salmon':'sashimi-sake',gyosas:'gyozas-oink','sake-premium':'asahi-japonesa-330cc'};
+  qsa('[data-menu-product]').forEach(link=>{
+    const productId=landingProductIds[link.dataset.menuProduct]||link.dataset.menuProduct;
+    const productCard=link.closest('.product');
+    if(productCard&&(pausedProducts.includes(productId)||stockBlocked(productCard.textContent||''))) productCard.remove();
+  });
+  window.addEventListener('storage',event=>{if(event.key==='atu_paused_products'||event.key==='atu_menu_custom'||event.key==='atu_stock_v1') window.location.reload();});
 
   /* =========================================================
      AÑO AUTOMÁTICO

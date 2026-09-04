@@ -31,6 +31,7 @@ a{text-decoration:none;color:inherit}
 .desktop-nav a:hover:after{width:100%}
 .header-cta,.button-red{background:var(--red);color:var(--bone)}
 .header-cta{padding:12px 17px;font-size:10px;letter-spacing:.12em;font-weight:700}
+.header-actions{display:flex;align-items:center;gap:14px}.header-login{font-size:10px;letter-spacing:.14em;color:var(--gray);transition:color .2s}.header-login:hover{color:var(--bone)}
 .header-cta span,.button span{margin-left:15px}
 .menu-toggle{display:none;border:0;background:none;width:42px;height:42px;padding:10px}
 .menu-toggle span{display:block;width:22px;height:1px;background:var(--bone);margin:6px 0;transition:.3s}
